@@ -83,7 +83,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 include(nfxHashingBuildConfig)
 include(nfxHashingDependencies)
-include(nfxHashingSources)
+include(nfxHashingTarget)
 
 #----------------------------------------------
 # Installation and packaging
