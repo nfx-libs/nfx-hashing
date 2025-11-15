@@ -13,8 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **Performance Optimization**: Added compile-time SSE4.2 fast path in `crc32c()` to eliminate runtime CPU detection overhead when compiled with `-march=native`, `-msse4.2`, or `/arch:AVX` flags
-- **Benchmark Accuracy**: Fixed single-step hash benchmarks to use dependency chains, preventing compiler pre-computation and ensuring realistic performance measurements
+- NIL
 
 ### Deprecated
 
@@ -31,6 +30,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 
 - NIL
+
+## [0.1.1] - 2025-11-15
+
+### Changed
+
+- **Performance Optimization**: Added compile-time SSE4.2 fast path in `crc32c()` to eliminate runtime CPU detection overhead when compiled with `-march=native`, `-msse4.2`, or `/arch:AVX` flags
+- **Benchmark Accuracy**: Fixed single-step hash benchmarks to use dependency chains, preventing compiler pre-computation and ensuring realistic performance measurements
 
 ## [0.1.0] - 2025-11-13 - Initial Release
 
