@@ -96,23 +96,32 @@ namespace nfx::hashing
 
 	inline uint32_t crc32c( uint32_t hash, uint8_t ch ) noexcept
 	{
+#if defined( __SSE4_2__ ) || ( defined( _MSC_VER ) && defined( __AVX__ ) )
+		// Compiled with SSE4.2 support - use intrinsic directly (no runtime check)
+#	if defined( __GNUC__ ) || defined( __clang__ )
+		return __builtin_ia32_crc32qi( hash, ch );
+#	elif defined( _MSC_VER )
+		return _mm_crc32_u8( hash, ch );
+#	endif
+#else
+		// No compile-time SSE4.2 - check at runtime
 		if ( internal::hasSse42Support() )
 		{
-#if defined( __GNUC__ ) || defined( __clang__ )
+#	if defined( __GNUC__ ) || defined( __clang__ )
 			return __builtin_ia32_crc32qi( hash, ch );
-#elif defined( _MSC_VER )
+#	elif defined( _MSC_VER )
 			return _mm_crc32_u8( hash, ch );
-
-#else
+#	else
 			// Compiler doesn't support intrinsics, fall back to software
 			return crc32cSoft( hash, ch );
-#endif
+#	endif
 		}
 		else
 		{
 			// CPU doesn't support SSE4.2, use software implementation
 			return crc32cSoft( hash, ch );
 		}
+#endif
 	}
 
 	inline constexpr uint32_t crc32cSoft( uint32_t hash, uint8_t ch ) noexcept

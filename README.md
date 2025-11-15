@@ -18,7 +18,7 @@ nfx-hashing is a modern C++20 header-only library that provides a collection of 
 
 ## Key Features
 
-### ⚡ High-Performance Hashing Algorithms
+### 🎲 High-Performance Hashing Algorithms
 
 - **Hardware Acceleration**: SSE4.2 CRC32-C intrinsics for faster hashing
 - **Software Fallback**: CRC32-C software implementation for systems without SSE4.2
@@ -315,7 +315,7 @@ See the [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes, new feat
 
 This project is licensed under the MIT License.
 
-## Dependencies
+## Development Dependencies
 
 - **[GoogleTest](https://github.com/google/googletest)**: Testing framework (BSD 3-Clause License) - Development only
 - **[Google Benchmark](https://github.com/google/benchmark)**: Performance benchmarking framework (Apache 2.0 License) - Development only
@@ -324,4 +324,4 @@ All dependencies are automatically fetched via CMake FetchContent when building 
 
 ---
 
-_Updated on November 12, 2025_
+_Updated on November 15, 2025_

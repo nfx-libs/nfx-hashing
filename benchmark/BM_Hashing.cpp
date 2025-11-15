@@ -79,44 +79,44 @@ namespace nfx::hashing::benchmark
 
 	static void BM_Fnv1a_SingleStep( ::benchmark::State& state )
 	{
-		uint32_t initialHash = nfx::hashing::constants::FNV_OFFSET_BASIS_32;
+		uint32_t hash = nfx::hashing::constants::FNV_OFFSET_BASIS_32;
 		uint8_t testByte = 'A';
-		::benchmark::DoNotOptimize( initialHash );
-		::benchmark::DoNotOptimize( testByte );
 
 		for ( auto _ : state )
 		{
-			uint32_t hash = nfx::hashing::fnv1a( initialHash, testByte );
+			hash = nfx::hashing::fnv1a( hash, testByte );
+			testByte = static_cast<uint8_t>( hash & 0xFF ); // Create dependency chain to prevent the compiler from precomputing
 			::benchmark::DoNotOptimize( hash );
 		}
+		::benchmark::DoNotOptimize( testByte );
 	}
 
 	static void BM_Crc32C_SingleStep( ::benchmark::State& state )
 	{
-		uint32_t initialHash = 0;
+		uint32_t hash = 0;
 		uint8_t testByte = 'A';
-		::benchmark::DoNotOptimize( initialHash );
-		::benchmark::DoNotOptimize( testByte );
 
 		for ( auto _ : state )
 		{
-			uint32_t hash = nfx::hashing::crc32c( initialHash, testByte );
+			hash = nfx::hashing::crc32c( hash, testByte );
+			testByte = static_cast<uint8_t>( hash & 0xFF );
 			::benchmark::DoNotOptimize( hash );
 		}
+		::benchmark::DoNotOptimize( testByte );
 	}
 
 	static void BM_Crc32CSoft_SingleStep( ::benchmark::State& state )
 	{
-		uint32_t initialHash = 0;
+		uint32_t hash = 0;
 		uint8_t testByte = 'A';
-		::benchmark::DoNotOptimize( initialHash );
-		::benchmark::DoNotOptimize( testByte );
 
 		for ( auto _ : state )
 		{
-			uint32_t hash = nfx::hashing::crc32cSoft( initialHash, testByte );
+			hash = nfx::hashing::crc32cSoft( hash, testByte );
+			testByte = static_cast<uint8_t>( hash & 0xFF );
 			::benchmark::DoNotOptimize( hash );
 		}
+		::benchmark::DoNotOptimize( testByte );
 	}
 
 	static void BM_Crc32C_ShortString( ::benchmark::State& state )
@@ -193,16 +193,16 @@ namespace nfx::hashing::benchmark
 
 	static void BM_Larson_SingleStep( ::benchmark::State& state )
 	{
-		uint32_t initialHash = 0;
+		uint32_t hash = 0;
 		uint8_t testByte = 'A';
-		::benchmark::DoNotOptimize( initialHash );
-		::benchmark::DoNotOptimize( testByte );
 
 		for ( auto _ : state )
 		{
-			uint32_t hash = nfx::hashing::larson( initialHash, testByte );
+			hash = nfx::hashing::larson( hash, testByte );
+			testByte = static_cast<uint8_t>( hash & 0xFF );
 			::benchmark::DoNotOptimize( hash );
 		}
+		::benchmark::DoNotOptimize( testByte );
 	}
 
 	//----------------------------
@@ -214,15 +214,14 @@ namespace nfx::hashing::benchmark
 		uint32_t seed = 12345;
 		uint32_t hash = 0xABCDEF01;
 		size_t tableSize = 1024;
-		::benchmark::DoNotOptimize( seed );
-		::benchmark::DoNotOptimize( hash );
-		::benchmark::DoNotOptimize( tableSize );
 
 		for ( auto _ : state )
 		{
 			uint32_t result = nfx::hashing::seedMix( seed, hash, tableSize );
+			hash = result;
 			::benchmark::DoNotOptimize( result );
 		}
+		::benchmark::DoNotOptimize( hash );
 	}
 
 	//----------------------------------------------
@@ -619,30 +618,30 @@ namespace nfx::hashing::benchmark
 
 	static void BM_Fnv1a64_SingleStep( ::benchmark::State& state )
 	{
-		uint64_t initialHash = nfx::hashing::constants::FNV_OFFSET_BASIS_64;
+		uint64_t hash = nfx::hashing::constants::FNV_OFFSET_BASIS_64;
 		uint8_t testByte = 'A';
-		::benchmark::DoNotOptimize( initialHash );
-		::benchmark::DoNotOptimize( testByte );
 
 		for ( auto _ : state )
 		{
-			uint64_t hash = nfx::hashing::fnv1a<uint64_t>( initialHash, testByte );
+			hash = nfx::hashing::fnv1a<uint64_t>( hash, testByte );
+			testByte = static_cast<uint8_t>( hash & 0xFF );
 			::benchmark::DoNotOptimize( hash );
 		}
+		::benchmark::DoNotOptimize( testByte );
 	}
 
 	static void BM_Larson64_SingleStep( ::benchmark::State& state )
 	{
-		uint64_t initialHash = 0;
+		uint64_t hash = 0;
 		uint8_t testByte = 'A';
-		::benchmark::DoNotOptimize( initialHash );
-		::benchmark::DoNotOptimize( testByte );
 
 		for ( auto _ : state )
 		{
-			uint64_t hash = nfx::hashing::larson<uint64_t>( initialHash, testByte );
+			hash = nfx::hashing::larson<uint64_t>( hash, testByte );
+			testByte = static_cast<uint8_t>( hash & 0xFF );
 			::benchmark::DoNotOptimize( hash );
 		}
+		::benchmark::DoNotOptimize( testByte );
 	}
 
 	static void BM_SeedMix64_Function( ::benchmark::State& state )
@@ -650,15 +649,14 @@ namespace nfx::hashing::benchmark
 		uint64_t seed = 12345;
 		uint64_t hash = 0xABCDEF0123456789ULL;
 		size_t tableSize = 1024;
-		::benchmark::DoNotOptimize( seed );
-		::benchmark::DoNotOptimize( hash );
-		::benchmark::DoNotOptimize( tableSize );
 
 		for ( auto _ : state )
 		{
 			uint64_t result = nfx::hashing::seedMix<uint64_t>( seed, hash, tableSize );
+			hash = result;
 			::benchmark::DoNotOptimize( result );
 		}
+		::benchmark::DoNotOptimize( hash );
 	}
 
 	//----------------------------
@@ -728,32 +726,31 @@ namespace nfx::hashing::benchmark
 
 	static void BM_Combine64_FNV( ::benchmark::State& state )
 	{
-		uint64_t initialHash = nfx::hashing::constants::FNV_OFFSET_BASIS_64;
+		uint64_t hash = nfx::hashing::constants::FNV_OFFSET_BASIS_64;
 		uint64_t newHash = 0x123456789ABCDEF0ULL;
 		uint64_t prime = nfx::hashing::constants::FNV_PRIME_64;
-		::benchmark::DoNotOptimize( initialHash );
-		::benchmark::DoNotOptimize( newHash );
-		::benchmark::DoNotOptimize( prime );
 
 		for ( auto _ : state )
 		{
-			uint64_t result = nfx::hashing::combine( initialHash, newHash, prime );
-			::benchmark::DoNotOptimize( result );
+			hash = nfx::hashing::combine( hash, newHash, prime );
+			newHash = hash ^ 0x0F0F0F0F0F0F0F0FULL;
+			::benchmark::DoNotOptimize( hash );
 		}
+		::benchmark::DoNotOptimize( newHash );
 	}
 
 	static void BM_Combine64_BoostMurmur( ::benchmark::State& state )
 	{
-		uint64_t initialHash = nfx::hashing::constants::FNV_OFFSET_BASIS_64;
+		uint64_t hash = nfx::hashing::constants::FNV_OFFSET_BASIS_64;
 		uint64_t newHash = 0x123456789ABCDEF0ULL;
-		::benchmark::DoNotOptimize( initialHash );
-		::benchmark::DoNotOptimize( newHash );
 
 		for ( auto _ : state )
 		{
-			uint64_t result = nfx::hashing::combine( initialHash, newHash );
-			::benchmark::DoNotOptimize( result );
+			hash = nfx::hashing::combine( hash, newHash );
+			newHash = hash ^ 0x0F0F0F0F0F0F0F0FULL;
+			::benchmark::DoNotOptimize( hash );
 		}
+		::benchmark::DoNotOptimize( newHash );
 	}
 } // namespace nfx::hashing::benchmark
 
