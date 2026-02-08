@@ -80,6 +80,9 @@ option(NFX_HASHING_BUILD_SAMPLES        "Build samples"                      OFF
 option(NFX_HASHING_BUILD_BENCHMARKS     "Build benchmarks"                   OFF )
 option(NFX_HASHING_BUILD_DOCUMENTATION  "Build Doxygen documentation"        OFF )
 
+# Performance options
+option(NFX_HASHING_ENABLE_SIMD          "Enable SIMD optimizations (SSE4.2)" ON  )
+
 # Installation
 option(NFX_HASHING_INSTALL_PROJECT      "Install project"                    OFF )
 
@@ -130,20 +133,21 @@ target_link_libraries(your_target PRIVATE nfx-hashing::nfx-hashing)
 
 ### Building
 
-> ⚠️ **Important**: The library uses runtime CPU detection for SSE4.2 support, but **compiler flags are still required** to emit SIMD instructions. Without proper flags, the library **silently falls back** to software implementation even if your CPU supports SSE4.2.
+> ✅ **Automatic SIMD Optimization**: The library **automatically enables SSE4.2 hardware acceleration** in Release builds (since v0.2.0). No manual compiler flags needed!
 
-**Compiler Flags for SIMD:**
+**SIMD Configuration:**
 
-- **GCC/Clang**: `-march=native` (auto-detect) or specific flags like `-msse4.2`, `-mavx`, `-mavx2`
-- **MSVC**: `/arch:AVX` or `/arch:AVX2`
+nfx-hashing automatically configures optimal SIMD flags when you link against it:
 
-**CMake Example:**
+- **Enabled by default** in Release/RelWithDebInfo builds
+- **GCC/Clang**: Uses `-march=native` (or `-msse4.2` as fallback)
+- **MSVC**: Uses `/arch:AVX` (which includes SSE4.2)
+- **Debug builds**: SIMD disabled to allow testing software fallback paths
+
+To disable SIMD optimizations (e.g., for portable binaries):
 
 ```cmake
-target_compile_options(your_target PRIVATE
-    $<$<CXX_COMPILER_ID:MSVC>:/arch:AVX2>
-    $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-march=native>
-)
+cmake .. -DCMAKE_BUILD_TYPE=Release -DNFX_HASHING_ENABLE_SIMD=OFF
 ```
 
 **Build Commands:**
@@ -156,7 +160,7 @@ cd nfx-hashing
 # Create build directory
 mkdir build && cd build
 
-# Configure with CMake
+# Configure with CMake (SIMD automatically enabled in Release)
 cmake .. -DCMAKE_BUILD_TYPE=Release
 
 # Build the library
@@ -324,4 +328,4 @@ All dependencies are automatically fetched via CMake FetchContent when building 
 
 ---
 
-_Updated on November 15, 2025_
+_Updated on February 08, 2026_

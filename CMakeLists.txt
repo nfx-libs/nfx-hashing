@@ -61,6 +61,9 @@ option(NFX_HASHING_BUILD_SAMPLES        "Build samples"                       OF
 option(NFX_HASHING_BUILD_BENCHMARKS     "Build benchmarks"                    OFF )
 option(NFX_HASHING_BUILD_DOCUMENTATION  "Build Doxygen documentation"         OFF )
 
+# --- Performance options ---
+option(NFX_HASHING_ENABLE_SIMD          "Enable SIMD optimizations (SSE4.2)"  ON )
+
 # --- Installation ---
 option(NFX_HASHING_INSTALL_PROJECT      "Install project"                     OFF )
 
