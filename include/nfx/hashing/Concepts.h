@@ -34,14 +34,14 @@
 
 namespace nfx::hashing
 {
-	//=====================================================================
-	// C++20 Concepts for type constraints
-	//=====================================================================
+    //=====================================================================
+    // C++20 Concepts for type constraints
+    //=====================================================================
 
-	/**
-	 * @brief Concept requiring type to be either uint32_t or uint64_t
-	 * @details Used to constrain hash functions to supported integer sizes
-	 */
-	template <typename T>
-	concept Hash32or64 = std::same_as<T, uint32_t> || std::same_as<T, uint64_t>;
+    /**
+     * @brief Concept requiring type to be either uint32_t or uint64_t
+     * @details Used to constrain hash functions to supported integer sizes
+     */
+    template <typename T>
+    concept Hash32or64 = std::same_as<T, uint32_t> || std::same_as<T, uint64_t>;
 } // namespace nfx::hashing

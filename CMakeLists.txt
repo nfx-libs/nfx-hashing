@@ -9,10 +9,10 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(nfx-hashing
-	VERSION 0.1.2
-	DESCRIPTION "Modern C++20 header-only hashing library with hardware acceleration"
-	HOMEPAGE_URL "https://github.com/nfx-libs/nfx-hashing"
-	LANGUAGES CXX
+    VERSION 0.1.2
+    DESCRIPTION "Modern C++20 header-only hashing library with hardware acceleration"
+    HOMEPAGE_URL "https://github.com/nfx-libs/nfx-hashing"
+    LANGUAGES CXX
 )
 
 #----------------------------------------------
@@ -21,12 +21,12 @@ project(nfx-hashing
 
 # Set default installation path to nfx
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-	if(WIN32)
-		set(CMAKE_INSTALL_PREFIX "C:/Program Files/nfx" CACHE PATH "Installation directory" FORCE)
-	else()
-		set(CMAKE_INSTALL_PREFIX "/usr/local/nfx" CACHE PATH "Installation directory" FORCE)
-	endif()
-	message(STATUS "Setting install prefix to '${CMAKE_INSTALL_PREFIX}'")
+    if(WIN32)
+        set(CMAKE_INSTALL_PREFIX "C:/Program Files/nfx" CACHE PATH "Installation directory" FORCE)
+    else()
+        set(CMAKE_INSTALL_PREFIX "/usr/local/nfx" CACHE PATH "Installation directory" FORCE)
+    endif()
+    message(STATUS "Setting install prefix to '${CMAKE_INSTALL_PREFIX}'")
 endif()
 
 #----------------------------------------------
@@ -82,7 +82,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 #----------------------------------------------
 
 include(nfxHashingBuildConfig)
-include(nfxHashingDependencies)
 include(nfxHashingTarget)
 
 #----------------------------------------------

@@ -35,59 +35,59 @@
 
 namespace nfx::hashing::constants
 {
-	//=====================================================================
-	// Hash algorithm constants
-	//=====================================================================
+    //=====================================================================
+    // Hash algorithm constants
+    //=====================================================================
 
-	//----------------------------------------------
-	// FNV-1a hash algorithm constants
-	//----------------------------------------------
+    //----------------------------------------------
+    // FNV-1a hash algorithm constants
+    //----------------------------------------------
 
-	/** @brief FNV-1a 32-bit offset basis constant. */
-	inline constexpr uint32_t FNV_OFFSET_BASIS_32{ 0x811C9DC5 };
+    /** @brief FNV-1a 32-bit offset basis constant. */
+    inline constexpr uint32_t FNV_OFFSET_BASIS_32{ 0x811C9DC5 };
 
-	/** @brief FNV-1a 32-bit prime constant. */
-	inline constexpr uint32_t FNV_PRIME_32{ 0x01000193 };
+    /** @brief FNV-1a 32-bit prime constant. */
+    inline constexpr uint32_t FNV_PRIME_32{ 0x01000193 };
 
-	/** @brief FNV-1a 64-bit offset basis constant. */
-	inline constexpr uint64_t FNV_OFFSET_BASIS_64{ 0xCBF29CE484222325ULL };
+    /** @brief FNV-1a 64-bit offset basis constant. */
+    inline constexpr uint64_t FNV_OFFSET_BASIS_64{ 0xCBF29CE484222325ULL };
 
-	/** @brief FNV-1a 64-bit prime constant. */
-	inline constexpr uint64_t FNV_PRIME_64{ 0x00000100000001B3ULL };
+    /** @brief FNV-1a 64-bit prime constant. */
+    inline constexpr uint64_t FNV_PRIME_64{ 0x00000100000001B3ULL };
 
-	//----------------------------------------------
-	// Integer hashing constants
-	//----------------------------------------------
+    //----------------------------------------------
+    // Integer hashing constants
+    //----------------------------------------------
 
-	/** @brief Knuth's multiplicative constant for 32-bit integer hashing. */
-	inline constexpr uint32_t KNUTH_MULTIPLIER_32{ 0x45d9f3b };
+    /** @brief Knuth's multiplicative constant for 32-bit integer hashing. */
+    inline constexpr uint32_t KNUTH_MULTIPLIER_32{ 0x45d9f3b };
 
-	/** @brief Wang's first multiplicative constant for 64-bit integer hashing. */
-	inline constexpr uint64_t WANG_MULTIPLIER_64_C1{ 0xbf58476d1ce4e5b9ull };
+    /** @brief Wang's first multiplicative constant for 64-bit integer hashing. */
+    inline constexpr uint64_t WANG_MULTIPLIER_64_C1{ 0xbf58476d1ce4e5b9ull };
 
-	/** @brief Wang's second multiplicative constant for 64-bit integer hashing. */
-	inline constexpr uint64_t WANG_MULTIPLIER_64_C2{ 0x94d049bb133111ebull };
+    /** @brief Wang's second multiplicative constant for 64-bit integer hashing. */
+    inline constexpr uint64_t WANG_MULTIPLIER_64_C2{ 0x94d049bb133111ebull };
 
-	//----------------------------------------------
-	// Hash combining constants
-	//----------------------------------------------
+    //----------------------------------------------
+    // Hash combining constants
+    //----------------------------------------------
 
-	/** @brief Golden ratio constant for 32-bit hash combining (φ = 2^32 / golden_ratio). */
-	inline constexpr uint32_t GOLDEN_RATIO_32{ 0x9e3779b9 };
+    /** @brief Golden ratio constant for 32-bit hash combining (φ = 2^32 / golden_ratio). */
+    inline constexpr uint32_t GOLDEN_RATIO_32{ 0x9e3779b9 };
 
-	/** @brief Golden ratio constant for 64-bit hash combining (φ = 2^64 / golden_ratio). */
-	inline constexpr uint64_t GOLDEN_RATIO_64{ 0x9e3779b97f4a7c15ULL };
+    /** @brief Golden ratio constant for 64-bit hash combining (φ = 2^64 / golden_ratio). */
+    inline constexpr uint64_t GOLDEN_RATIO_64{ 0x9e3779b97f4a7c15ULL };
 
-	/** @brief MurmurHash3 first multiplicative constant for avalanche mixing. */
-	inline constexpr uint64_t MURMUR3_MULTIPLIER_C1{ 0xff51afd7ed558ccdULL };
+    /** @brief MurmurHash3 first multiplicative constant for avalanche mixing. */
+    inline constexpr uint64_t MURMUR3_MULTIPLIER_C1{ 0xff51afd7ed558ccdULL };
 
-	/** @brief MurmurHash3 second multiplicative constant for avalanche mixing. */
-	inline constexpr uint64_t MURMUR3_MULTIPLIER_C2{ 0xc4ceb9fe1a85ec53ULL };
+    /** @brief MurmurHash3 second multiplicative constant for avalanche mixing. */
+    inline constexpr uint64_t MURMUR3_MULTIPLIER_C2{ 0xc4ceb9fe1a85ec53ULL };
 
-	//----------------------------------------------
-	// Seed mixing constants
-	//----------------------------------------------
+    //----------------------------------------------
+    // Seed mixing constants
+    //----------------------------------------------
 
-	/** @brief Multiplicative constant for seed mixing. */
-	inline constexpr uint64_t SEED_MIX_MULTIPLIER_64{ 0x2545F4914F6CDD1DUL };
+    /** @brief Multiplicative constant for seed mixing. */
+    inline constexpr uint64_t SEED_MIX_MULTIPLIER_64{ 0x2545F4914F6CDD1DUL };
 } // namespace nfx::hashing::constants

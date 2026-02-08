@@ -30,13 +30,13 @@
 
 namespace nfx::hashing
 {
-	//=====================================================================
-	// Unified hash<T, HashType> API
-	//=====================================================================
+    //=====================================================================
+    // Unified hash<T, HashType> API
+    //=====================================================================
 
-	template <typename T, Hash32or64 HashType, HashType Seed>
-	inline HashType hash( const T& value ) noexcept
-	{
-		return Hasher<HashType, Seed>{}( value );
-	}
+    template <typename T, Hash32or64 HashType, HashType Seed>
+    inline HashType hash( const T& value ) noexcept
+    {
+        return Hasher<HashType, Seed>{}( value );
+    }
 } // namespace nfx::hashing
