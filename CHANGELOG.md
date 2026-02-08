@@ -31,6 +31,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - NIL
 
+## [0.2.0] - 2026-02-08
+
+### Added
+
+- **Automatic SIMD Optimization**: Compiler flags for SSE4.2 hardware acceleration are now automatically configured in Release builds
+- **NFX_HASHING_ENABLE_SIMD** option to control SIMD optimizations (default: ON)
+- GCC/Clang: automatic `-march=native` (or `-msse4.2` fallback)
+- MSVC: automatic `/arch:AVX` for SSE4.2 support
+- Debug builds intentionally disable SIMD to allow testing software fallback paths
+
 ## [0.1.2] - 2025-11-27
 
 ### Changed
