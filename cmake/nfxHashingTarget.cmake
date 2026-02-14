@@ -29,17 +29,6 @@ target_compile_features(${PROJECT_NAME}
 )
 
 #----------------------------------------------
-# Compiler warnings
-#----------------------------------------------
-
-# --- Enable strict warnings ---
-target_compile_options(${PROJECT_NAME}
-    INTERFACE
-        $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
-        $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wall -Wextra -Werror>
-)
-
-#----------------------------------------------
 # SIMD optimization flags for hardware-accelerated hashing
 #----------------------------------------------
 
@@ -52,7 +41,7 @@ if(NFX_HASHING_ENABLE_SIMD)
         set(CMAKE_REQUIRED_FLAGS "-march=native")
         check_cxx_source_compiles("int main() { return 0; }" COMPILER_SUPPORTS_MARCH_NATIVE)
         unset(CMAKE_REQUIRED_FLAGS)
-        
+
         if(COMPILER_SUPPORTS_MARCH_NATIVE)
             target_compile_options(${PROJECT_NAME}
                 INTERFACE
