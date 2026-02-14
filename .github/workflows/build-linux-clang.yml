@@ -66,8 +66,8 @@ jobs:
                 -G "Unix Makefiles" \
                 -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} \
                 -DNFX_HASHING_BUILD_TESTS=ON \
-                -DNFX_HASHING_BUILD_BENCHMARKS=OFF \
-                -DNFX_HASHING_BUILD_SAMPLES=OFF \
+                -DNFX_HASHING_BUILD_BENCHMARKS=ON \
+                -DNFX_HASHING_BUILD_SAMPLES=ON \
                 -DNFX_HASHING_BUILD_DOCUMENTATION=OFF
 
       - name: Build
