@@ -11,7 +11,6 @@ if(NOT NFX_HASHING_PACKAGE_SOURCE
         AND NOT NFX_HASHING_PACKAGE_DEB
         AND NOT NFX_HASHING_PACKAGE_RPM
         AND NOT NFX_HASHING_PACKAGE_WIX)
-    message(STATUS "Packaging disabled (all options OFF), skipping...")
     return()
 endif()
 

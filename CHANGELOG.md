@@ -31,6 +31,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - NIL
 
+## [0.3.0] - 2026-02-14
+
+### Added
+
+- **Strict Compiler Warnings**: Enabled comprehensive warning flags for all compilers
+  - GCC/Clang: `-Wall -Wextra -Werror` (treat warnings as errors)
+  - MSVC: `/W4 /WX` (warning level 4, treat warnings as errors)
+- Improved code quality enforcement at compile time
+
 ## [0.2.0] - 2026-02-08
 
 ### Added

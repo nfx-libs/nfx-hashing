@@ -7,7 +7,6 @@
 #----------------------------------------------
 
 if(NOT NFX_HASHING_INSTALL_PROJECT)
-    message(STATUS "Installation disabled, skipping...")
     return()
 endif()
 
@@ -137,7 +136,7 @@ if(NFX_HASHING_BUILD_DOCUMENTATION)
         OPTIONAL
         COMPONENT Documentation
     )
-    
+
     if(WIN32)
         # Install Windows .cmd batch file
         install(
