@@ -1,15 +1,36 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 ## [Unreleased]
 
 ### Added
 
 - NIL
+
+### Changed
+
+- NIL
+
+### Deprecated
+
+- NIL
+
+### Removed
+
+- NIL
+
+### Fixed
+
+- NIL
+
+### Security
+
+- NIL
+
+## [0.4.0] - 2026-02-15
+
+### Added
+
+- WebAssembly/Emscripten support with automatic software fallback for SSE4.2 intrinsics
 
 ### Changed
 
@@ -19,22 +40,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Cleaned up packaging to source-only generation (binary packages unnecessary for header-only library)
   - Removed binary packaging options: `PACKAGE_ARCHIVE`, `PACKAGE_DEB`, `PACKAGE_RPM`, `PACKAGE_WIX`
 
-### Deprecated
-
-- NIL
-
 ### Removed
 
+- `NFX_HASHING_ENABLE_SIMD` CMake option (header-only library - SIMD controlled by user's compile flags)
+  - All SIMD compile options from INTERFACE target (users manage their own optimization flags)
 - **Binary Packaging**: Removed all binary package generation (TGZ/ZIP archives, DEB, RPM, WIX MSI)
   - Users should use FetchContent, git submodules, or GitHub source archives
-
-### Fixed
-
-- NIL
-
-### Security
-
-- NIL
 
 ## [0.3.1] - 2026-02-14
 

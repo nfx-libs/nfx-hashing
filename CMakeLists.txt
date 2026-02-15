@@ -9,7 +9,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(nfx-hashing
-    VERSION 0.3.1
+    VERSION 0.4.0
     DESCRIPTION "Modern C++20 header-only hashing library with hardware acceleration"
     HOMEPAGE_URL "https://github.com/nfx-libs/nfx-hashing"
     LANGUAGES CXX
@@ -45,7 +45,6 @@ option(NFX_HASHING_BUILD_TESTS         "Build tests"                         OFF
 option(NFX_HASHING_BUILD_SAMPLES       "Build samples"                       OFF)
 option(NFX_HASHING_BUILD_BENCHMARKS    "Build benchmarks"                    OFF)
 option(NFX_HASHING_BUILD_DOCUMENTATION "Build Doxygen documentation"         OFF)
-
 
 # --- Installation ---
 option(NFX_HASHING_INSTALL_PROJECT     "Install project"                     OFF)
