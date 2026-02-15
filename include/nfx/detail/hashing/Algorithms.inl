@@ -104,23 +104,7 @@ namespace nfx::hashing
         return _mm_crc32_u8( hash, ch );
 #    endif
 #else
-        // No compile-time SSE4.2 - check at runtime
-        if( internal::hasSse42Support() )
-        {
-#    if defined( __GNUC__ ) || defined( __clang__ )
-            return __builtin_ia32_crc32qi( hash, ch );
-#    elif defined( _MSC_VER )
-            return _mm_crc32_u8( hash, ch );
-#    else
-            // Compiler doesn't support intrinsics, fall back to software
-            return crc32cSoft( hash, ch );
-#    endif
-        }
-        else
-        {
-            // CPU doesn't support SSE4.2, use software implementation
-            return crc32cSoft( hash, ch );
-        }
+        return crc32cSoft( hash, ch );
 #endif
     }
 

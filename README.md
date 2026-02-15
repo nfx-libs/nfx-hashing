@@ -80,9 +80,6 @@ option(NFX_HASHING_BUILD_SAMPLES        "Build samples"                      OFF
 option(NFX_HASHING_BUILD_BENCHMARKS     "Build benchmarks"                   OFF )
 option(NFX_HASHING_BUILD_DOCUMENTATION  "Build Doxygen documentation"        OFF )
 
-# Performance options
-option(NFX_HASHING_ENABLE_SIMD          "Enable SIMD optimizations (SSE4.2)" ON  )
-
 # Installation
 option(NFX_HASHING_INSTALL_PROJECT      "Install project"                    OFF )
 
@@ -131,20 +128,28 @@ target_link_libraries(your_target PRIVATE nfx-hashing::nfx-hashing)
 
 > ✅ **Automatic SIMD Optimization**: The library **automatically enables SSE4.2 hardware acceleration** in Release builds (since v0.2.0). No manual compiler flags needed!
 
-**SIMD Configuration:**
+### SIMD Optimizations
 
-nfx-hashing automatically configures optimal SIMD flags when you link against it:
+nfx-hashing uses hardware-accelerated instructions when available:
 
-- **Enabled by default** in Release/RelWithDebInfo builds
-- **GCC/Clang**: Uses `-march=native` (or `-msse4.2` as fallback)
-- **MSVC**: Uses `/arch:AVX` (which includes SSE4.2)
-- **Debug builds**: SIMD disabled to allow testing software fallback paths
+- **SSE4.2 CRC32-C**: Automatically used when compiled with SSE4.2 support
+- **Software fallback**: Pure C++ implementation when SIMD unavailable
+- **Compile-time detection**: Uses `#ifdef __SSE4_2__` preprocessor checks
 
-To disable SIMD optimizations (e.g., for portable binaries):
+**To enable SIMD optimizations**, compile your project with appropriate flags:
 
 ```cmake
-cmake .. -DCMAKE_BUILD_TYPE=Release -DNFX_HASHING_ENABLE_SIMD=OFF
+# GCC/Clang: Enable native CPU optimizations
+target_compile_options(your_target PRIVATE -march=native)
+
+# Or explicit SSE4.2
+target_compile_options(your_target PRIVATE -msse4.2)
+
+# MSVC: Enable AVX (includes SSE4.2)
+target_compile_options(your_target PRIVATE /arch:AVX)
 ```
+
+**For portable binaries** (no SIMD), simply don't add SIMD flags. The library will automatically use software fallback.
 
 **Build Commands:**
 
