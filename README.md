@@ -2,7 +2,7 @@
 
 <!-- Project Info -->
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/nfx-libs/nfx-hashing/blob/main/LICENSE.txt) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/nfx-libs/nfx-hashing?style=flat-square)](https://github.com/nfx-libs/nfx-hashing/releases) [![GitHub tag (latest by date)](https://img.shields.io/github/tag/nfx-libs/nfx-hashing?style=flat-square)](https://github.com/nfx-libs/nfx-hashing/tags)<br/>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/nfx-libs/nfx-hashing/blob/main/LICENSE) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/nfx-libs/nfx-hashing?style=flat-square)](https://github.com/nfx-libs/nfx-hashing/releases) [![GitHub tag (latest by date)](https://img.shields.io/github/tag/nfx-libs/nfx-hashing?style=flat-square)](https://github.com/nfx-libs/nfx-hashing/tags)<br/>
 
 ![C++20](https://img.shields.io/badge/C%2B%2B-20-blue?style=flat-square) ![CMake](https://img.shields.io/badge/CMake-3.20%2B-green.svg?style=flat-square) ![Cross Platform](https://img.shields.io/badge/Platform-Linux_Windows-lightgrey?style=flat-square)
 
@@ -88,10 +88,6 @@ option(NFX_HASHING_INSTALL_PROJECT      "Install project"                    OFF
 
 # Packaging
 option(NFX_HASHING_PACKAGE_SOURCE       "Enable source package generation"   OFF )
-option(NFX_HASHING_PACKAGE_ARCHIVE      "Enable TGZ/ZIP package generation"  OFF )
-option(NFX_HASHING_PACKAGE_DEB          "Enable DEB package generation"      OFF )
-option(NFX_HASHING_PACKAGE_RPM          "Enable RPM package generation"      OFF )
-option(NFX_HASHING_PACKAGE_WIX          "Enable WiX MSI installer"           OFF )
 ```
 
 ### Using in Your Project
@@ -233,55 +229,6 @@ for (char ch : std::string_view("example_key"))
 }
 ```
 
-## Installation & Packaging
-
-nfx-hashing provides packaging options for distribution.
-
-### Package Generation
-
-```bash
-# Configure with packaging options
-cmake .. -DCMAKE_BUILD_TYPE=Release \
-         -DNFX_HASHING_PACKAGE_ARCHIVE=ON \
-         -DNFX_HASHING_PACKAGE_DEB=ON \
-         -DNFX_HASHING_PACKAGE_RPM=ON
-
-# Generate binary packages
-cmake --build . --target package
-# or
-cd build && cpack
-
-# Generate source packages
-cd build && cpack --config CPackSourceConfig.cmake
-```
-
-### Supported Package Formats
-
-| Format      | Platform       | Description                        | Requirements |
-| ----------- | -------------- | ---------------------------------- | ------------ |
-| **TGZ/ZIP** | Cross-platform | Compressed archive packages        | None         |
-| **DEB**     | Debian/Ubuntu  | Native Debian packages             | `dpkg-dev`   |
-| **RPM**     | RedHat/SUSE    | Native RPM packages                | `rpm-build`  |
-| **WiX**     | Windows        | Professional MSI installer         | `WiX 3.11+`  |
-| **Source**  | Cross-platform | Source code distribution (TGZ+ZIP) | None         |
-
-### Installation
-
-```bash
-# Linux (DEB-based systems)
-sudo dpkg -i nfx-hashing_*_amd64.deb
-
-# Linux (RPM-based systems)
-sudo rpm -ivh nfx-hashing-*-Linux.rpm
-
-# Windows
-# Run the .exe installer with administrator privileges
-nfx-hashing-*-win64.exe
-
-# Manual installation (extract archive)
-tar -xzf nfx-hashing-*-Linux.tar.gz -C /usr/local/
-```
-
 ## Project Structure
 
 ```
@@ -328,4 +275,4 @@ All dependencies are automatically fetched via CMake FetchContent when building 
 
 ---
 
-_Updated on February 08, 2026_
+_Updated on February 15, 2026_

@@ -13,7 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- NIL
+- **CMake Simplification**: Drastically simplified CMake configuration for header-only library
+  - Removed multi-config export loop (header-only libraries don't need configuration-specific targets)
+  - Removed unnecessary `NFX_HASHING_LIB_DIR` variable from package config
+  - Cleaned up packaging to source-only generation (binary packages unnecessary for header-only library)
+  - Removed binary packaging options: `PACKAGE_ARCHIVE`, `PACKAGE_DEB`, `PACKAGE_RPM`, `PACKAGE_WIX`
 
 ### Deprecated
 
@@ -21,7 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- NIL
+- **Binary Packaging**: Removed all binary package generation (TGZ/ZIP archives, DEB, RPM, WIX MSI)
+  - Users should use FetchContent, git submodules, or GitHub source archives
 
 ### Fixed
 

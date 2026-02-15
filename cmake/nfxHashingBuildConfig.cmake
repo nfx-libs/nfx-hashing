@@ -17,31 +17,6 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
 endif()
 
 #----------------------------------------------
-# Multi-config generator setup
-#----------------------------------------------
-
-# --- For multi-config generators, set available configurations ---
-if(CMAKE_CONFIGURATION_TYPES)
-    set(CMAKE_CONFIGURATION_TYPES "Release;Debug;RelWithDebInfo;MinSizeRel" CACHE STRING "Available build configurations" FORCE)
-    message(STATUS "Multi-config generator detected. Available configurations: ${CMAKE_CONFIGURATION_TYPES}")
-else()
-    # --- For single-config generators (Makefiles, Ninja), set default build type ---
-    if(NOT CMAKE_BUILD_TYPE)
-        set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build" FORCE)
-        message(STATUS "Single-config generator detected. Defaulting to optimized build type: ${CMAKE_BUILD_TYPE}")
-    else()
-        message(STATUS "Single-config generator detected. Using specified build type: ${CMAKE_BUILD_TYPE}")
-    endif()
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Release" "Debug" "RelWithDebInfo" "MinSizeRel")
-endif()
-
-#----------------------------------------------
-# Install prefix configuration
-#----------------------------------------------
-
-include(GNUInstallDirs)
-
-#----------------------------------------------
 # Directory configuration
 #----------------------------------------------
 
