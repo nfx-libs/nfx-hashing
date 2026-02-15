@@ -28,12 +28,14 @@
  * @details Implements Larson, fnv1a, crc32c, seedMix, and combine for use in higher-level hash APIs.
  */
 
-#if defined( __GNUC__ ) || defined( __clang__ )
-#    include <cpuid.h>
-#endif
-#if defined( _MSC_VER )
-#    include <intrin.h>
-#    include <nmmintrin.h>
+#ifndef __EMSCRIPTEN__
+#    if defined( __GNUC__ ) || defined( __clang__ )
+#        include <cpuid.h>
+#    endif
+#    if defined( _MSC_VER )
+#        include <intrin.h>
+#        include <nmmintrin.h>
+#    endif
 #endif
 
 #include <array>
@@ -55,23 +57,27 @@ namespace nfx::hashing
 
         inline bool hasSse42Support() noexcept
         {
+#if defined( __EMSCRIPTEN__ )
+            // WebAssembly n'a pas de SSE4.2, utiliser version software
+            return false;
+#else
             static const bool s_hasSse42 = []() {
                 bool hasSupport = false;
-#if defined( __GNUC__ ) || defined( __clang__ )
+#    if defined( __GNUC__ ) || defined( __clang__ )
                 unsigned int eax, ebx, ecx, edx;
                 if( __get_cpuid( internal::CPUID_FEATURE_INFO_LEAF, &eax, &ebx, &ecx, &edx ) )
                 {
-                    hasSupport = ( ecx & ( 1 << internal::ECX_SSE42_BIT ) ) != 0; // ECX bit 20 = SSE4.2
+                    hasSupport = ( ecx & ( 1 << internal::ECX_SSE42_BIT ) ) != 0;
                 }
-#elif defined( _MSC_VER )
+#    elif defined( _MSC_VER )
                 std::array<int, 4> cpuInfo{};
                 __cpuid( cpuInfo.data(), internal::CPUID_FEATURE_INFO_LEAF );
-                hasSupport = ( cpuInfo[2] & ( 1 << internal::ECX_SSE42_BIT ) ) != 0; // ECX bit 20 = SSE4.2
-#endif
+                hasSupport = ( cpuInfo[2] & ( 1 << internal::ECX_SSE42_BIT ) ) != 0;
+#    endif
                 return hasSupport;
             }();
-
             return s_hasSse42;
+#endif
         }
     } // namespace internal
 
